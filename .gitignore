@@ -171,3 +171,6 @@ temp/
 
 # Test results produced by build
 TestResults.xml
+
+.fake
+.ionide

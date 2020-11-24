@@ -1,0 +1,7 @@
+FSharp.Core
+System.Runtime.Numerics
+System.Linq
+System.Linq.Expressions
+System.Linq.Queryable
+System.Linq.Parallel
+FSharp.Quotations.Evaluator

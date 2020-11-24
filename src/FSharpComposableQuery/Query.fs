@@ -208,7 +208,7 @@ module QueryImpl =
             | Tuple(tty, es) -> Tuple(tty, List.map reduce es)
             | Proj(e, i) -> 
                 match reduce e with
-                | Tuple(_tty, es) -> List.nth es i
+                | Tuple(_tty, es) -> List.item i es
                 | IfThenElse(m, n1, n2) -> 
                     reduce (IfThenElse(m, Proj(n1, i), Proj(n2, i)))
                 | n -> Proj(n, i)
@@ -330,7 +330,7 @@ module QueryImpl =
             else if methodInfo = gtMi then GtF
             else if methodInfo = geqMi then GeqF
             else if methodInfo = strconcatMi then StrConcatF
-            else if methodInfo = likeMi then LikeF
+            // else if methodInfo = likeMi then LikeF
             else if methodInfo = andMi then AndF
             else if methodInfo = orMi then OrF
             else if methodInfo = notMi then NotF
@@ -366,7 +366,7 @@ module QueryImpl =
                     | None -> Expr.Call(mi, args)
                     | Some obj -> Expr.Call(obj, mi, castArgs (Array.toList (mi.GetParameters())) args)
                 // wrap with RunValue(Quote(_))
-                Expr.Call(runNativeValueMi.MakeGenericMethod (mi.ReturnType), [Expr.Value this; Expr.Quote(e)])
+                Expr.Call(runNativeValueMi.MakeGenericMethod (mi.ReturnType), [Expr.Value this; Expr.QuoteTyped(e)])
             | _ -> failwith "Impossible case"
 
         member internal this.emptyExpr ty = 
@@ -429,7 +429,7 @@ module QueryImpl =
                 | RunAsEnumerable(e, ty) ->
                     let mi = runNativeEnumMi.MakeGenericMethod ty
                     Expr.Call(mi, [nativeBuilderExpr; toExp e])
-                | Quote(e) -> Expr.Quote(toExp e)
+                | Quote(e) -> Expr.QuoteTyped(toExp e)
                 | Source(eTy, sTy, e1) ->
                     let mi = 
                         match sTy with
@@ -446,7 +446,7 @@ module QueryImpl =
             // This allows us to use query.Run to execute value queries. 
             let remOuter e = 
                 match e with
-                | Patterns.Call(_, mi, [_; Patterns.Quote(e')]) when (mi.IsGenericMethod && mi.GetGenericMethodDefinition() = runNativeValueMi) -> e'
+                | Patterns.Call(_, mi, [_; Patterns.QuoteTyped(e')]) when (mi.IsGenericMethod && mi.GetGenericMethodDefinition() = runNativeValueMi) -> e'
                 | _ -> e
 
             (toExp >> remOuter) exp
@@ -461,7 +461,7 @@ module QueryImpl =
                 | Var(var) -> EVar(var)
                 | DerivedPatterns.Unit -> Unit
                 | Value _ -> Unknown(UnknownRef(expr), expr.Type, None, [])
-                | Patterns.Quote(e) -> Quote(from e)
+                | Patterns.QuoteTyped(e) -> Quote(from e)
                 | Lambda(param, body) -> Lam(param, from body)
                 | Application(e1, e2) -> App(from e1, from e2)
 

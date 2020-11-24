@@ -1,6 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <GenerateProgramFile>false</GenerateProgramFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- <Compile Include="UnitTest1.fs" />
+    <Compile Include="Program.fs" /> -->
+    <Compile Include="Utils.fs" />
+    <Compile Include="Simple.fs" />
+    <Compile Include="People.fs" />
+    <Compile Include="TPCH.fs" />
+    <Compile Include="Nested.fs" />
+    <Compile Include="Xml.fs" />
+    <Compile Include="QueryTests.fs" />
+    <Compile Include="NorthwindTests.fs" />
+    <Compile Include="ExtraTests.fs" />
+    <Compile Include="RunTests.fs" />
+    <None Include="sql\organisation.sql" />
+    <None Include="sql\simple.sql" />
+    <None Include="sql\xml.sql" />
+    <None Include="sql\people.sql" />
+    <None Include="sql\tpch.sql" />
+    <Content Include="data\movies.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="db.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <!-- <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -130,12 +160,6 @@
     <Reference Include="System.Numerics" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-  </ItemGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  </ItemGroup> -->
+  <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

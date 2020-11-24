@@ -326,7 +326,7 @@ let geqMi = getGenericMethodInfo <@@ (>=) @@>
 let ltMi = getGenericMethodInfo <@@ (<) @@>
 let leqMi = getGenericMethodInfo <@@ (<=) @@>
 let strconcatMi = getGenericMethodInfo <@@ (^) @@>
-let likeMi = getGenericMethodInfo <@@ fun x y -> System.Data.Linq.SqlClient.SqlMethods.Like(x, y) @@>
+// let likeMi = getGenericMethodInfo <@@ fun x y -> System.Data.Linq.SqlClient.SqlMethods.Like(x, y) @@>
 let andMi = getGenericMethodInfo <@@ (&&) @@>
 let orMi = getGenericMethodInfo <@@ (||) @@>
 let notMi = getGenericMethodInfo <@@ (not) @@>
@@ -393,7 +393,7 @@ let getBinOp binop (e1 : Expr) (e2 : Expr) =
         assert (ty1 = ty2)
         Expr.Call(geqMi.MakeGenericMethod([| ty1 |]), [ e1; e2 ])
     | Concat, StringTy, StringTy -> Expr.Call(strconcatMi, [ e1; e2 ])
-    | Like, StringTy, StringTy -> Expr.Call(likeMi, [ e1; e2 ])
+    // | Like, StringTy, StringTy -> Expr.Call(likeMi, [ e1; e2 ])
     | And, BoolTy, BoolTy -> Expr.Call(andMi, [ e1; e2 ])
     | Or, BoolTy, BoolTy -> Expr.Call(orMi, [ e1; e2 ])
     | _ -> failwith "not yet implemented"

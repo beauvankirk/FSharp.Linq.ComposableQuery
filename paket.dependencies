@@ -1,0 +1,86 @@
+version 5.257.0
+source https://api.nuget.org/v3/index.json
+
+storage: none
+framework: netcoreapp3.1, netstandard2.0, netstandard2.1, net472
+
+nuget FSharp.Core 4.7.2
+nuget System.Runtime.Numerics < 5.0
+nuget System.Linq < 5.0
+nuget System.Linq.Expressions < 5.0
+nuget System.Linq.Queryable < 5.0
+nuget System.Linq.Parallel < 5.0
+nuget FSharp.Quotations.Evaluator ~> 2.1.0
+
+group Test
+  source https://api.nuget.org/v3/index.json
+  storage: none
+  framework: net472, netstandard2.0
+
+  nuget FSharp.Core 4.7.2
+  nuget Expecto 9.0
+  nuget FsCheck 2.14.0
+  nuget Expecto.FsCheck 8.13.1
+  nuget NUnit
+  nuget NUnit3TestAdapter < 4.0
+  nuget Microsoft.NET.Test.Sdk < 16.9
+  nuget YoloDev.Expecto.TestSdk
+  nuget FSharp.Data
+  nuget FSharp.Data.TypeProviders
+
+group Docs
+  source https://api.nuget.org/v3/index.json
+
+  framework: netstandard2.0
+  storage: none
+
+  nuget FSharp.Core 4.7.2
+  nuget FSharp.Compiler.Service ~> 35.0
+  nuget FSharp.Formatting ~> 4.1
+  nuget Newtonsoft.Json 12.0.3
+
+
+
+
+// [ FAKE GROUP ]
+group Build
+  source https://api.nuget.org/v3/index.json
+  storage: none
+  framework: netstandard2.0
+
+ 
+  nuget FSharp.Core 4.7.2
+  nuget Fake.Core.Target 5.20.3
+  nuget Fake.Core.Process 5.20.3
+  nuget Fake.Core.ReleaseNotes  5.20.3
+  nuget Fake.Core.UserInput 5.20.3
+  nuget Fake.IO.FileSystem 5.20.3
+  nuget Fake.DotNet.Cli 5.20.3
+  nuget Fake.DotNet.MSBuild 5.20.3
+  nuget Fake.DotNet.AssemblyInfoFile 5.20.3
+  nuget Fake.DotNet.Paket 5.20.3
+  nuget Fake.DotNet.Testing.Expecto  5.20.3
+  nuget Fake.DotNet.FSFormatting  5.20.3
+  nuget Fake.Tools.Git 5.20.3
+  nuget Fake.Api.GitHub 5.20.3
+  nuget Paket.Core 5.257.0
+  
+  nuget Microsoft.NETCore.Platforms 5.0
+  nuget Microsoft.NETCore.Targets 5.0
+  nuget Microsoft.Win32.Registry < 5.0
+  nuget System.CodeDom < 5.0
+  nuget System.Collections.Immutable < 5.0
+  nuget System.Formats.Asn1 5.0
+  nuget System.Reactive < 5.0
+  nuget System.Reflection.Metadata < 5.0
+  nuget System.Resources.Extensions < 5.0
+  nuget System.Runtime.CompilerServices.Unsafe < 5.0
+  nuget System.Security.AccessControl < 5.0
+  nuget System.Security.Cryptography.Cng 5.0
+  nuget System.Security.Cryptography.Pkcs 5.0
+  nuget System.Security.Cryptography.ProtectedData < 5.0
+  nuget System.Security.Cryptography.Xml < 5.0
+  nuget System.Security.Permissions < 5.0
+  nuget System.Security.Principal.Windows < 5.0
+  nuget System.Text.Encoding.CodePages < 5.0
+  nuget System.Threading.Tasks.Dataflow < 5.0

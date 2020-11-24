@@ -1,7 +1,7 @@
 ﻿namespace FSharpComposableQuery.Tests
 
 open System
-open System.Data.Linq.SqlClient
+open System.Data.SqlClient
 open System.Linq
 open Microsoft.FSharp.Data.TypeProviders
 open Microsoft.FSharp.Linq
