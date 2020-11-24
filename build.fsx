@@ -351,9 +351,6 @@ Target.create "CleanTest" DoNothing
 "Rebuild" ==> "CleanTest"
 "Test" ==> "CleanTest"
 
-"Rebuild"
-  ==> "Default"
-
 "Clean" ==> "BuildRelease"
 "AssemblyInfo" ==> "BuildRelease"
 //  ==> "GenerateDocs"
@@ -363,6 +360,9 @@ Target.create "CleanTest" DoNothing
   ==> "ReleaseGitHub"
   ==> "Push"
   ==> "Release"
+
+"Pack"
+  ==> "Default"
 
 Target.runOrDefault "Default"
 
